@@ -5,60 +5,88 @@ class Body extends Component {
   state = {
     latest: {
       title: "Popular",
-      results: []
+      results: [],
     },
     popular: {
       title: "Latest",
 
-      results: []
+      results: [],
     },
     mostwatched: {
       title: "Most Watched",
-      results: []
-    }
+      results: [
+        {
+        "popularity": 13.318,
+        "vote_count": 681,
+        "video": false,
+        "poster_path": "/pci1ArYW7oJ2eyTo2NMZYEKHHiCP.jpg",
+        "id": 724089,
+        "adult": false,
+        "backdrop_path": "/jtAI6OJIWLWiRItNSZZoWjrsUtmi.jpg",
+        "original_language": "en",
+        "original_title": "N2",
+        "genre_ids": [1],
+        "title": "N2",
+        "vote_average": 9.1,
+        "overview": "Professor Gabriel Emerson finally learns the truth about Julia Mitchell's identity, but his realization comes a moment too late. Julia is done waiting for the well-respected Dante specialist to remember her and wants nothing more to do with him. Can Gabriel win back her heart before she finds love in another's arms?",
+        "release_date": "2020-07-31"
+        }],
+    },
   };
-
-  async componentDidMount() {
+  async latest(page) {
     let m =
-      "https://api.themoviedb.org/3/movie/top_rated?api_key=ab9c9c39ef6dbe62904e9ed46a9e6b8b&language=en-US&page=1";
-
-    const res = await fetch(m);
-
-    const dt = await res.json();
-
-    this.setState({
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=ab9c9c39ef6dbe62904e9ed46a9e6b8b&language=en-US&page=${page}`;
+      const res = await fetch(m);
+      console.log(m)
+      const dt = await res.json();
+      this.setState({
       latest: Object.assign({}, this.state.latest, {
-        results: dt.results
-      })
+        results: this.state.latest.results.concat(dt.results),
+      }),
     });
-
+  }
+  async popular(page) {
     let p =
-      "https://api.themoviedb.org/3/movie/popular?api_key=ab9c9c39ef6dbe62904e9ed46a9e6b8b&language=en-US&page=1";
-
-    const resp = await fetch(p);
-
-    const data = await resp.json();
-
-    this.setState({
-      popular: Object.assign({}, this.state.popular, {
-        results: data.results
-      })
+      `https://api.themoviedb.org/3/movie/popular?api_key=ab9c9c39ef6dbe62904e9ed46a9e6b8b&language=en-US&page=${page}`;
+      const resp = await fetch(p);
+      const data = await resp.json();
+      this.setState({
+        popular: Object.assign({}, this.state.popular, {
+        results: data.results,
+      }),
     });
     this.setState({
       mostwatched: Object.assign({}, this.state.mostwatched, {
-        results: data.results
-      })
+        results: this.state.mostwatched.results.concat(data.results),
+      }),
     });
+  }
+  async mostwatched(page) {
+    let p =
+      `https://api.themoviedb.org/3/movie/popular?api_key=ab9c9c39ef6dbe62904e9ed46a9e6b8b&language=en-US&page=${page}`;
+      const resp = await fetch(p);
+      const data = await resp.json();
+  console.log(p);
+  console.log(page);
+    this.setState({
+      mostwatched: Object.assign({}, this.state.mostwatched, {
+        results: this.state.mostwatched.results.concat(data.results),
+      }),
+    });
+  }
+  async componentDidMount() {
+    this.latest(1);
+    this.popular(1);
+    this.mostwatched(1);
   }
   static getDerivedStateFromError(error) {
     return { hasError: true };
   }
-
+ 
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      return <h1 style={{maxWidth: "300px", margin: "auto"}} >Something went wrong.</h1>;
     }
-  
     return (
       <section style={style}>
         <Preview
@@ -87,5 +115,5 @@ const style = {
   backgroundColor: "black",
   maxWidth: "90vw",
   padding: "10px",
-  margin: "auto"
+  margin: "auto",
 };

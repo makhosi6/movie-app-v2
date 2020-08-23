@@ -12,35 +12,36 @@ class Preview extends Component {
     value: 0,
     vsblty: "hidden",
     left: 0,
-    stop: 0
+    stop: 0,
   };
 
   slide() {
-    let one = window.innerWidth > this.myInputt.current.getBoundingClientRect().left;
-
+    let one =
+      window.innerWidth > this.myInputt.current.getBoundingClientRect().left;
+    
     this.setState({
       stop: 0,
-      hid: one ? "hidden":"visible",
+      hid: one ? "hidden" : "visible",
       left: this.myInput.current.offsetLeft,
       value: one ? this.state.value + 0 : this.state.value + 100,
-      vsblty: "visible"
+      vsblty: "visible",
     });
   }
   refresh() {
     this.setState({
       hid: "visible",
-      value: 0
+      value: 0,
     });
     setTimeout(() => {
       this.setState({
-        vsblty: "hidden"
+        vsblty: "hidden",
       });
     }, 500);
   }
 
   componentDidMount() {
     this.setState({
-      stop: window.innerWidth
+      stop: window.innerWidth,
     });
   }
 
@@ -50,7 +51,11 @@ class Preview extends Component {
       truthy === true ? <Loader /> : <Pass info={this.props.info} />;
     let element =
       truthy === true ? null : (
-        <span onClick={() => this.slide()} style={{visibility: this.state.hid }} className="arrow">
+        <span
+          onClick={() => this.slide()}
+          style={{ visibility: this.state.hid }}
+          className="arrow"
+        >
           <i className="icon-arrow-right"> </i>{" "}
         </span>
       );
@@ -58,7 +63,7 @@ class Preview extends Component {
     return (
       <div
         style={{
-          paddingBottom: "30px"
+          paddingBottom: "30px",
         }}
       >
         {" "}
@@ -66,18 +71,18 @@ class Preview extends Component {
         <span
           onClick={() => this.refresh()}
           style={{
-            visibility: this.state.vsblty
+            visibility: this.state.vsblty,
           }}
           className="refresh"
         >
-          <i className="icon-arrow-left "> </i>{" "}
+          <i className="icon-arrow-left"> </i>{" "}
         </span>{" "}
         {""}{" "}
         <div className="title">
           <h1
             style={{
               color: "white",
-              paddingLeft: "10px"
+              paddingLeft: "10px",
             }}
           >
             {" "}
@@ -87,16 +92,17 @@ class Preview extends Component {
         </div>{" "}
         <div
           style={{
-            right: this.state.value + "px"
+            right: this.state.value + "px",
           }}
           className="preview"
           ref={this.myInput}
         >
           {" "}
-          {catchError}{" "}
+          {catchError}
           <div className="stopper" ref={this.myInputt}>
             {" "}
           </div>
+        
           {""}{" "}
         </div>{" "}
       </div>
@@ -107,7 +113,6 @@ class Loader extends Component {
   render() {
     return (
       <div className="gif" style={st}>
-        {" "}
       </div>
     );
   }
@@ -118,7 +123,7 @@ const st = {
   minWidth: "90vw",
   padding: "30px",
   margin: "auto",
-  paddingBottom: "30px"
+  paddingBottom: "30px",
 };
 
 export default Preview;

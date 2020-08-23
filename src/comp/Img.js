@@ -36,7 +36,7 @@ class Img extends Component {
   }
   handleClickAway(x,el) {
     if (x !== "") {
-      console.log("clickAWAY");
+      console.log("clickAway");
       el.className = "img";
       el.innerHTML = x;
     }
