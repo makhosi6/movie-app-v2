@@ -6,6 +6,7 @@ class Search extends Component {
     super(props);
     this.myInput = React.createRef();
     this.myInputt = React.createRef();
+    this.ifChange = this.ifChange.bind(this);
   }
   state = {
     queryvalue: "",
@@ -24,7 +25,8 @@ class Search extends Component {
 
     this.setState({
       query: Object.assign({}, this.state.query, {
-        results: dt.results
+        results: this.state.query.results.concat(dt.results)
+
       })
     });
   }
@@ -47,6 +49,7 @@ class Search extends Component {
     let element =
       this.state.query.results === "" || this.state.queryvalue === "" ? null : (
         <Results
+        more={this.ifChange}
           value={this.state.queryvalue}
           len={this.state.query.results.length || 0}
           title={this.state.query.title}
@@ -142,7 +145,12 @@ class Results extends Component {
     slide() {
       let one = (window.innerWidth - 20)> this.myInputt.current.getBoundingClientRect().left;
   
-    
+      let p = 1;
+      if (one) {
+        console.clear();
+        console.log(++p);
+        this.more(++p);
+      }
       this.setState({
         stop: 0,
         hid: one ? "hidden":"visible",
