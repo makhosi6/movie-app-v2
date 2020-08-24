@@ -6,6 +6,7 @@ class Preview extends Component {
     super(props);
     this.myInput = React.createRef();
     this.myInputt = React.createRef();
+    this.more = this.more.bind(this);
   }
   state = {
     hid: "",
@@ -14,20 +15,29 @@ class Preview extends Component {
     left: 0,
     stop: 0,
   };
-
-  slide() {
-    let one =
-      window.innerWidth > this.myInputt.current.getBoundingClientRect().left;
-    
+more(p){
+  if (this.state.hid === "hidden") {
+    this.props.more(p)
+    console.log("its hidden now");
+   }
+}
+slide() {
+    let one = (window.innerWidth - 20) > this.myInputt.current.getBoundingClientRect().left;
+    let p = 1;
+    if(one){
+      console.clear();
+     console.log(++p)
+      this.more(++p);
+    }
     this.setState({
       stop: 0,
       hid: one ? "hidden" : "visible",
       left: this.myInput.current.offsetLeft,
       value: one ? this.state.value + 0 : this.state.value + 100,
-      vsblty: "visible",
+      vsblty: "visible"
     });
   }
-  refresh() {
+refresh() {
     this.setState({
       hid: "visible",
       value: 0,
@@ -53,7 +63,8 @@ class Preview extends Component {
       truthy === true ? null : (
         <span
           onClick={() => this.slide()}
-          style={{ visibility: this.state.hid }}
+         
+          style={{ visibility: this.state.hidd }}
           className="arrow"
         >
           <i className="icon-arrow-right"> </i>{" "}
@@ -100,10 +111,7 @@ class Preview extends Component {
           {" "}
           {catchError}
           <div className="stopper" ref={this.myInputt}>
-            {" "}
           </div>
-        
-          {""}{" "}
         </div>{" "}
       </div>
     );
@@ -120,6 +128,7 @@ class Loader extends Component {
 
 const st = {
   backgroundColor: "black",
+  
   minWidth: "90vw",
   padding: "30px",
   margin: "auto",

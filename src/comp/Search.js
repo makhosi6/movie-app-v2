@@ -139,7 +139,7 @@ class Results extends Component {
     };
   
     slide() {
-      let one = window.innerWidth > this.myInputt.current.getBoundingClientRect().left;
+      let one = (window.innerWidth - 20)> this.myInputt.current.getBoundingClientRect().left;
   
     
       this.setState({
@@ -171,7 +171,7 @@ class Results extends Component {
     let truthy = this.props.info == "";
     let element =
       truthy === true ? null : (
-        <span onClick={() => this.slide()} style={{visibility: this.state.hid }}  className="arrow">
+        <span onClick={() => this.slide()} style={{visibility: this.state.hidd }}  className="arrow">
           <i className="icon-arrow-right"> </i>{" "}
         </span>
       );
