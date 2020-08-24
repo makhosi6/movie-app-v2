@@ -15,18 +15,20 @@ class Preview extends Component {
     left: 0,
     stop: 0,
   };
-more(p){
-  if (this.state.hid === "hidden") {
-    this.props.more(p)
-    console.log("its hidden now");
-   }
-}
-slide() {
-    let one = (window.innerWidth - 20) > this.myInputt.current.getBoundingClientRect().left;
+  more(p) {
+    if (this.state.hid === "hidden") {
+      this.props.more(p);
+      console.log("its hidden now");
+    }
+  }
+  slide() {
+    let one =
+      window.innerWidth - 20 >
+      this.myInputt.current.getBoundingClientRect().left;
     let p = 1;
-    if(one){
+    if (one) {
       console.clear();
-     console.log(++p)
+      console.log(++p);
       this.more(++p);
     }
     this.setState({
@@ -34,10 +36,10 @@ slide() {
       hid: one ? "hidden" : "visible",
       left: this.myInput.current.offsetLeft,
       value: one ? this.state.value + 0 : this.state.value + 100,
-      vsblty: "visible"
+      vsblty: "visible",
     });
   }
-refresh() {
+  refresh() {
     this.setState({
       hid: "visible",
       value: 0,
@@ -48,7 +50,9 @@ refresh() {
       });
     }, 500);
   }
-
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
   componentDidMount() {
     this.setState({
       stop: window.innerWidth,
@@ -57,25 +61,27 @@ refresh() {
 
   render() {
     let truthy = this.props.info == "";
-    let catchError =
-      truthy === true ? <Loader /> : <Pass info={this.props.info} />;
-    let element =
-      truthy === true ? null : (
+    let catchError = truthy === true ? <Loader /> : <Pass info={this.props.info} />;
+    let element = truthy === true ? null : (
         <span
           onClick={() => this.slide()}
-         
           style={{ visibility: this.state.hidd }}
           className="arrow"
         >
           <i className="icon-arrow-right"> </i>{" "}
         </span>
       );
-
+    if (this.state.hasError) {
+      return (
+        <div style={{ maxWidth: "300px", margin: "auto" }}>
+          <h1>Something went wrong. </h1>
+          <p>Error: {this.state.hasError}</p>
+        </div>
+      );
+    }
     return (
       <div
-        style={{
-          paddingBottom: "30px",
-        }}
+       
       >
         {" "}
         {element}{" "}
@@ -110,8 +116,7 @@ refresh() {
         >
           {" "}
           {catchError}
-          <div className="stopper" ref={this.myInputt}>
-          </div>
+          <div className="stopper" ref={this.myInputt}></div>
         </div>{" "}
       </div>
     );
@@ -121,18 +126,19 @@ class Loader extends Component {
   render() {
     return (
       <div className="gif" style={st}>
+        {" "}
+        <h1 style={{maxWidth:"200px", margin: "auto", paddingTop:"60px"}} >Loading...</h1>
       </div>
     );
   }
 }
 
 const st = {
-  backgroundColor: "black",
-  
+ backgroundColor: "black",
   minWidth: "90vw",
-  padding: "30px",
   margin: "auto",
-  paddingBottom: "30px",
+  paddingTop: "30px",
+  paddingBottom: "5px",
 };
 
 export default Preview;

@@ -394,7 +394,7 @@
             .gif {
                 background-position: center;
                 background-repeat: no-repeat;
-                /* background-image: url('./img/ajax-loader.gif'); */
+                background-image: url('./img/ajax-loader.gif');
             }
             
             .img i:hover {

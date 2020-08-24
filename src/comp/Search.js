@@ -117,6 +117,7 @@ class Loader extends Component {
     return (
       <div className="gif" style={st}>
         {" "}
+        <h1 style={{maxWidth:"200px", margin: "auto", paddingTop:"60px"}} >Loading...</h1>
       </div>
     );
   }
@@ -210,7 +211,7 @@ class Results extends Component {
 const st = {
   backgroundColor: "black",
   minWidth: "90vw",
-  padding: "30px",
+  padding: "60px",
   margin: "auto",
   paddingBottom: "30px"
 };

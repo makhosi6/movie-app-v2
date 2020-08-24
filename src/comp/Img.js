@@ -41,11 +41,21 @@ class Img extends Component {
       el.innerHTML = x;
     }
   }
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
   render() {
-    let dummieImage =
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAACzCAMAAACaV0OpAAAAG1BMVEXn5+fGxsbOzs7KysrS0tLCwsLj4+PX19ff398cUTmPAAABIElEQVR4nO3a0Q6CMAxAUcC57f+/WBMgGCtptK1FufdNHnoiyWYfHAYiIqL3ayW2lgXv0+FwKcgHkKf4kA8ktzp/rs0KiUmKXNcH1SqLSYrs9/7FJGTkVDnvVOXdJIEhIyOfRmYbsiQmISOnymxDriEjIyP/scwGaElM2pEvS/LJp4lJyMj3trNglcUkRd7Ov1UWkxQ5MGRkZORwOe/2zPvF8Hv/YhIycqrMHuYaMjIycrhc1juvWCExSZHZw5CRveXvn6pxqfT5cy+jMTFJkQNDRkZGDpfzbs++PuhWWUxSZL/3LyYhI6fKfqeqPk9SZPYwZGRk5N+S2QAtiUnIyKkyG6BryKeWr/GdUa6v5Skc3vvneI2mp52vTERERI/dADURd6mhIc7LAAAAAElFTkSuQmCC";
+    let dummieImage ="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAACzCAMAAACaV0OpAAAAG1BMVEXn5+fGxsbOzs7KysrS0tLCwsLj4+PX19ff398cUTmPAAABIElEQVR4nO3a0Q6CMAxAUcC57f+/WBMgGCtptK1FufdNHnoiyWYfHAYiIqL3ayW2lgXv0+FwKcgHkKf4kA8ktzp/rs0KiUmKXNcH1SqLSYrs9/7FJGTkVDnvVOXdJIEhIyOfRmYbsiQmISOnymxDriEjIyP/scwGaElM2pEvS/LJp4lJyMj3trNglcUkRd7Ov1UWkxQ5MGRkZORwOe/2zPvF8Hv/YhIycqrMHuYaMjIycrhc1juvWCExSZHZw5CRveXvn6pxqfT5cy+jMTFJkQNDRkZGDpfzbs++PuhWWUxSZL/3LyYhI6fKfqeqPk9SZPYwZGRk5N+S2QAtiUnIyKkyG6BryKeWr/GdUa6v5Skc3vvneI2mp52vTERERI/dADURd6mhIc7LAAAAAElFTkSuQmCC";
     let none = "https://image.tmdb.org/t/p/w780/null";
     let src = this.props.url === none ? dummieImage : this.props.url;
+    if (this.state.hasError) {
+      return (
+        <div style={{ maxWidth: "300px", margin: "auto" }}>
+          <h1>Somethingwent wrong. </h1>
+          <p>Error: {this.state.hasError}</p>
+        </div>
+      );
+    }
     return (
       <ClickAwayListener onClickAway={()=>this.handleClickAway(this.state.prev,this.myInput.current)}>
         <div>
@@ -79,7 +89,7 @@ class Img extends Component {
                     color: "grey",
                   }}
                 >
-                  {this.props.year.slice(0, 4)}
+                  {(this.props.year)?this.props.year.slice(0, 4):"0000"}
                 </span>
                 <br />
                 <span
