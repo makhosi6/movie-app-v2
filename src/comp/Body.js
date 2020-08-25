@@ -7,7 +7,6 @@ class Body extends Component {
     this.popular = this.popular.bind(this);
     this.latest = this.latest.bind(this);
     this.mostwatched = this.mostwatched.bind(this);
-    
   }
   
   state = {
