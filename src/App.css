@@ -17,15 +17,13 @@
                 transition: all ease-in-out .2s;
                 border: none;
                 outline: none;
-                z-index: 0;
+                z-index: 0 !important;
                 -webkit-transition: all ease-in-out .2s;
                 -moz-transition: all ease-in-out .2s;
                 -ms-transition: all ease-in-out .2s;
                 -o-transition: all ease-in-out .2s;
             }
-            #zIndex{
-                z-index: 100 !important;
-            }
+           
             .red {
                 background-color: #fff;
                 height: auto;
@@ -163,7 +161,7 @@
             }
             
             .popUp {
-                z-index: 100000000000000000000000000000;
+                z-index: 100;
                 line-height: 2;
                 padding: 40px;
                 position: absolute;
@@ -317,7 +315,7 @@
             }
             
             .img i {
-                position: absolute;
+                /* position: absolute; */
                 top: 10px;
                 right: 10px;
                 color: white;

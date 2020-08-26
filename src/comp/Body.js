@@ -70,8 +70,7 @@ class Body extends Component {
     let p = `https://api.themoviedb.org/3/movie/popular?api_key=ab9c9c39ef6dbe62904e9ed46a9e6b8b&language=en-US&page=${page}`;
     const resp = await fetch(p);
     const data = await resp.json();
-    console.log(p);
-    console.log(page);
+    console.log(p)
     this.setState({
       mostwatched: Object.assign({}, this.state.mostwatched, {
         results: this.state.mostwatched.results.concat(data.results),
@@ -79,9 +78,9 @@ class Body extends Component {
     });
   }
   async componentDidMount() {
-    this.latest(1);
-    this.popular(1);
-    this.mostwatched(1);
+    this.latest(1)
+    this.popular(1)
+    this.mostwatched(1)
   }
   static getDerivedStateFromError(error) {
     return { hasError: true };

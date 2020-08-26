@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Preview from "./Preview";
-import Sticky from 'react-stickynode';
 
 class Search extends Component {
   constructor(props) {
@@ -8,7 +7,6 @@ class Search extends Component {
     this.myInput = React.createRef();
     this.myInputt = React.createRef();
     this.ifChange = this.ifChange.bind(this);
-    
   }
   state = {
     queryvalue: "",
@@ -44,7 +42,6 @@ class Search extends Component {
       }, 1000);
     }
   }
-
   render() {
     let element =
       this.state.query.results === "" || this.state.queryvalue === "" ? null : (
@@ -70,8 +67,7 @@ class Search extends Component {
         </section>
       );
     return (
-            <div id="zIndex">
-              <Sticky enabled={true} top={0}  >
+            <div>
               <div key={this.state.queryvalue + "86"} className="search">
                 <form
                   onClick={(e) => {
@@ -121,12 +117,10 @@ class Search extends Component {
                     type="text"
                     placeholder="Type name, title"
                   />
-                </form>{" "}
-              </div>{" "}
-              </Sticky>
+                </form>
+              </div>
               {element}
             </div>
-       
     );
   }
 }
