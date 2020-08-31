@@ -11,6 +11,7 @@ class Img extends Component {
     name: "",
     prev: "",
     idValue: "",
+    srl: Math.floor(Math.random()*3468786)
   }
   async change(name, el) {
     const prev = el.innerHTML;
@@ -36,9 +37,11 @@ class Img extends Component {
   }
   handleClickAway(x,el) {
     if (x !== "") {
-      console.log("clickAway");
       el.className = "img";
-      el.innerHTML = x;
+        this.setState({
+          prev: "",
+          srl: Math.floor(Math.random()*3468786)
+        });
     }
   }
   static getDerivedStateFromError(error) {
@@ -51,13 +54,13 @@ class Img extends Component {
     if (this.state.hasError) {
       return (
         <div style={{ maxWidth: "300px", margin: "auto" }}>
-          <h1>Somethingwent wrong. </h1>
+          <h1>Something went wrong. </h1>
           <p>Error: {this.state.hasError}</p>
         </div>
       );
     }
     return (
-      <ClickAwayListener onClickAway={()=>this.handleClickAway(this.state.prev,this.myInput.current)}>
+      <ClickAwayListener  key={this.state.srl} onClickAway={()=>this.handleClickAway(this.state.prev,this.myInput.current)}>
         <div>
           <div ref={this.myInput} className="img">
             <div className="b">
@@ -70,7 +73,6 @@ class Img extends Component {
               </div>
               <span
                 style={{ float: "right", margin: "10px" }}
-                onMouseOver={()=> console.log("mouse over")}
                 onClick={() =>
                   this.change(
                     this.props.title,
