@@ -96,7 +96,7 @@ class Body extends Component {
       );
     }
     return (
-      <section style={style}>
+      <main style={style}>
         <Preview
           className="popular"
           id="popular"
@@ -114,7 +114,7 @@ class Body extends Component {
           cat={this.state.mostwatched.title}
           info={this.state.mostwatched.results}
         />{" "}
-      </section>
+      </main>
     );
   }
 }

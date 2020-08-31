@@ -80,9 +80,7 @@ class Preview extends Component {
       );
     }
     return (
-      <div
-       
-      >
+      <section>
         {" "}
         {element}{" "}
         <span
@@ -102,7 +100,7 @@ class Preview extends Component {
               paddingLeft: "10px",
             }}
           >
-            {" "}
+    
             {this.props.cat}{" "}
           </h1>
           {""}
@@ -118,7 +116,7 @@ class Preview extends Component {
           {catchError}
           <div className="stopper" ref={this.myInputt}></div>
         </div>{" "}
-      </div>
+      </section>
     );
   }
 }
