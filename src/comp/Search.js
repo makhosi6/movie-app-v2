@@ -67,7 +67,7 @@ class Search extends Component {
         </section>
       );
     return (
-            <div>
+            <section>
               <div key={this.state.queryvalue + "86"} className="search">
                 <form
                   onClick={(e) => {
@@ -120,7 +120,7 @@ class Search extends Component {
                 </form>
               </div>
               {element}
-            </div>
+            </section>
     );
   }
 }
