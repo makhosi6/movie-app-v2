@@ -32,8 +32,6 @@ class Img extends Component {
     const res = await fetch(m);
     const data = await res.json();
     const vidId = await data.items[0].id.videoId;
-
-    
     el.innerHTML =
       '<iframe class="play" src="https://www.youtube.com/embed/'+vidId+'" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
   }
@@ -62,7 +60,7 @@ class Img extends Component {
       );
     }
     return (
-      <ClickAwayListener  key={this.state.srl} onClickAway={()=>this.handleClickAway(this.state.prev,this.myInput.current)}>
+    <ClickAwayListener  key={this.state.srl} onClickAway={()=>this.handleClickAway(this.state.prev,this.myInput.current)}>
     <article>
           <div ref={this.myInput} className="img">
             <div className="b">

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Loader from './Loader'
 import Pass from "./Pass";
 
 class Preview extends Component {
@@ -120,23 +121,5 @@ class Preview extends Component {
     );
   }
 }
-class Loader extends Component {
-  render() {
-    return (
-      <div className="gif" style={st}>
-        {" "}
-        <h1 style={{maxWidth:"200px", margin: "auto", paddingTop:"60px"}} >Loading...</h1>
-      </div>
-    );
-  }
-}
-
-const st = {
- backgroundColor: "black",
-  minWidth: "90vw",
-  margin: "auto",
-  paddingTop: "30px",
-  paddingBottom: "5px",
-};
 
 export default Preview;

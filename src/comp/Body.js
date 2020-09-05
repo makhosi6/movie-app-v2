@@ -21,25 +21,7 @@ class Body extends Component {
     },
     mostwatched: {
       title: "Most Watched",
-      results: [
-        {
-          popularity: 13.318,
-          vote_count: 681,
-          video: false,
-          poster_path: "/pci1ArYW7oJ2eyTo2NMZYEKHHiCP.jpg",
-          id: 724089,
-          adult: false,
-          backdrop_path: "/jtAI6OJIWLWiRItNSZZoWjrsUtmi.jpg",
-          original_language: "en",
-          original_title: "N2",
-          genre_ids: [1],
-          title: "N2",
-          vote_average: 9.1,
-          overview:
-            "Professor Gabriel Emerson finally learns the truth about Julia Mitchell's identity, but his realization comes a moment too late. Julia is done waiting for the well-respected Dante specialist to remember her and wants nothing more to do with him. Can Gabriel win back her heart before she finds love in another's arms?",
-          release_date: "2020-07-31",
-        },
-      ],
+      results: [],
     },
   };
   async latest(page) {
