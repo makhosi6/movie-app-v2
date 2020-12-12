@@ -10,6 +10,7 @@ class Preview extends Component {
     this.more = this.more.bind(this);
   }
   state = {
+   
     hid: "",
     value: 0,
     vsblty: "hidden",
@@ -61,8 +62,14 @@ class Preview extends Component {
   }
 
   render() {
+    setTimeout(() => {
+      this.setState({
+        status: this.props.status,
+      });
+    }, 4000);
+    console.log(this.state.status);
     let truthy = this.props.info == "";
-    let catchError = truthy === true ? <Loader /> : <Pass info={this.props.info} />;
+    let catchError = truthy === true ? <Loader status={this.state.status} /> : <Pass info={this.props.info} />;
     let element = truthy === true ? null : (
         <span
           onClick={() => this.slide()}

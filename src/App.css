@@ -13,6 +13,7 @@
             }
             
             * {
+
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, sans-serif;
                 transition: all ease-in-out .2s;
                 border: none;
@@ -23,7 +24,10 @@
                 -ms-transition: all ease-in-out .2s;
                 -o-transition: all ease-in-out .2s;
             }
-           
+           *::selection{
+               background-color: white;
+               color: #000;
+           }
             .red {
                 background-color: #fff;
                 height: auto;
@@ -393,7 +397,13 @@
             .video-desc {
                 padding: 20px;
             }
-            
+            #demo-popup-popper{
+                top: 20px !important;
+                left: -21px !important;
+            }
+            .white{
+                background-color: #fff;
+            }
             .searchResults {
                 padding: 0 10px;
                 display: grid;
@@ -413,14 +423,13 @@
             }
             
             @media only screen and (max-width: 800px) {
-                .listedMenu,
-                .login {
+                .listedMenu {
                     display: none;
                 }
                 .mobileMenu {
                     visibility: visible;
                 }
-            }
+            } 
             
             @media only screen and (max-width: 768px) {
                 .wrapper {

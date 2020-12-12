@@ -9,6 +9,7 @@ class Search extends Component {
     this.ifChange = this.ifChange.bind(this);
   }
   state = {
+    
     queryvalue: "",
     query: {
       title: "Search results",
@@ -17,7 +18,7 @@ class Search extends Component {
   };
 
   async ifChange(page) {
-    let m = `https:api.themoviedb.org/3/search/movie?api_key=ab9c9c39ef6dbe62904e9ed46a9e6b8b&language=en-US&query=${this.state.queryvalue}&page=${page}`;
+    let m = `https:api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.queryvalue}&page=${page}`;
 
     const res = await fetch(m);
     const dt = await res.json();
@@ -42,7 +43,14 @@ class Search extends Component {
       }, 1000);
     }
   }
+
   render() {
+    setTimeout(() => {
+      this.setState({
+        status: this.props.status,
+      });
+    }, 4000);
+    let cat = ``;
     let element =
       this.state.query.results === "" || this.state.queryvalue === "" ? null : (
         <section style={style}>
@@ -51,79 +59,89 @@ class Search extends Component {
               style={{
                 color: "white",
                 paddingLeft: "10px",
-                textTransform: "lowercase",
+                textTransform: "capitalize",
               }}
             >
-              {this.state.query.title} for {this.state.queryvalue}(
-              {this.state.query.results.length})
-            </h1>
-          </div>
+              {this.state.query.title}
+              for {this.state.queryvalue}({this.state.query.results.length}){" "}
+            </h1>{" "}
+          </div>{" "}
           <Preview
+            status={this.state.status}
+            cat={cat}
             more={this.ifChange}
             value={this.state.queryvalue}
             len={this.state.query.results.length || 0}
             info={this.state.query.results}
-          />
+          />{" "}
         </section>
       );
     return (
-            <section>
-              <div key={this.state.queryvalue + "86"} className="search">
-                <form
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  <button style={{ backgroundColor: "#0f0f0f" }} type="submit">
-                    <i
-                      onClick={() => {
-                        this.search();
+      <section>
+        <div key={this.state.queryvalue + "86"} className="search">
+          <form
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <button
+              style={{
+                backgroundColor: "#0f0f0f",
+              }}
+              type="submit"
+            >
+              <i
+                onClick={() => {
+                  this.search();
 
-                        setTimeout(() => {
-                          this.ifChange();
-                        }, 1000);
-                      }}
-                      style={{ color: "white", margin: " 0 30px" }}
-                      className="icon-magnifier"
-                    ></i>{" "}
-                  </button>{" "}
-                  <input
-                    onKeyDown={(e) => {
-                      if (
-                        e.which === 13 &&
-                        document.querySelector(".input").value !== ""
-                      ) {
-                        setTimeout(() => {
-                          this.ifChange();
-                        }, 1000);
+                  setTimeout(() => {
+                    this.ifChange();
+                  }, 1000);
+                }}
+                style={{
+                  color: "white",
+                  margin: " 0 30px",
+                }}
+                className="icon-magnifier"
+              ></i>{" "}
+            </button>{" "}
+            <input
+              onKeyDown={(e) => {
+                if (
+                  e.which === 13 &&
+                  document.querySelector(".input").value !== ""
+                ) {
+                  setTimeout(() => {
+                    this.ifChange();
+                  }, 1000);
 
-                        this.setState({
-                          queryvalue:
-                            document.querySelector(".input").value || 0,
-                        });
-                        setTimeout(() => {
-                          document.querySelector(".input").value = "";
-                        }, 1000);
-                      }
-                    }}
-                    className="input"
-                    style={{
-                      color: "white",
-                      outline: "none",
-                      backgroundColor: "#0f0f0f",
-                      border: "none",
-                      fontSize: "18px",
-                    }}
-                    type="text"
-                    placeholder="Type name, title"
-                  />
-                </form>
-              </div>
-              {element}
-            </section>
+                  this.setState({
+                    queryvalue: document.querySelector(".input").value || 0,
+                  });
+                  setTimeout(() => {
+                    document.querySelector(".input").value = "";
+                  }, 1000);
+                }
+              }}
+              className="input"
+              style={{
+                color: "white",
+                outline: "none",
+                backgroundColor: "#0f0f0f",
+                border: "none",
+                fontSize: "18px",
+              }}
+              type="text"
+              placeholder="Type name, title"
+            />
+          </form>{" "}
+        </div>{" "}
+        {element}{" "}
+      </section>
     );
   }
 }
+const API_KEY = process.env.REACT_APP_API;
 
 const style = {
   bottom: "0",

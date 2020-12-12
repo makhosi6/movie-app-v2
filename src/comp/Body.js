@@ -10,13 +10,13 @@ class Body extends Component {
   }
   
   state = {
+   
     latest: {
       title: "Popular",
       results: [],
     },
     popular: {
       title: "Latest",
-
       results: [],
     },
     mostwatched: {
@@ -25,9 +25,8 @@ class Body extends Component {
     },
   };
   async latest(page) {
-    let m = `https://api.themoviedb.org/3/movie/top_rated?api_key=ab9c9c39ef6dbe62904e9ed46a9e6b8b&language=en-US&page=${page}`;
+    let m = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${page}`;
     const res = await fetch(m);
-    console.log(m);
     const dt = await res.json();
     this.setState({
       latest: Object.assign({}, this.state.latest, {
@@ -35,10 +34,9 @@ class Body extends Component {
       }),
     });
   }
-  async popular(page) {
-    let p = `https://api.themoviedb.org/3/movie/popular?api_key=ab9c9c39ef6dbe62904e9ed46a9e6b8b&language=en-US&page=${page}`;
+  async popular(page,) {
+    let p = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
     const resp = await fetch(p);
-    console.log(p);
     const data = await resp.json();
     this.setState({
       popular: Object.assign({}, this.state.popular, {
@@ -49,10 +47,9 @@ class Body extends Component {
 
   }
   async mostwatched(page) {
-    let p = `https://api.themoviedb.org/3/movie/popular?api_key=ab9c9c39ef6dbe62904e9ed46a9e6b8b&language=en-US&page=${page}`;
+    let p = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
     const resp = await fetch(p);
     const data = await resp.json();
-    console.log(p)
     this.setState({
       mostwatched: Object.assign({}, this.state.mostwatched, {
         results: this.state.mostwatched.results.concat(data.results),
@@ -69,6 +66,12 @@ class Body extends Component {
   }
 
   render() {
+    setTimeout(() => {
+      this.setState({
+        status: this.props.status,
+      });
+    }, 4000);
+
     if (this.state.hasError) {
       return (
         <div style={{ maxWidth: "300px", margin: "auto" }}>
@@ -80,6 +83,7 @@ class Body extends Component {
     return (
       <main style={style}>
         <Preview
+          status={this.state.status}
           className="popular"
           id="popular"
           more={this.popular}
@@ -87,11 +91,13 @@ class Body extends Component {
           info={this.state.popular.results}
         />{" "}
         <Preview
+          status={this.state.status}
           more={this.latest}
           cat={this.state.latest.title}
           info={this.state.latest.results}
         />{" "}
         <Preview
+          status={this.state.status}
           more={this.mostwatched}
           cat={this.state.mostwatched.title}
           info={this.state.mostwatched.results}
@@ -102,7 +108,7 @@ class Body extends Component {
 }
 
 export default Body;
-
+const API_KEY = process.env.REACT_APP_API;
 const style = {
   bottom: "0",
   backgroundColor: "black",

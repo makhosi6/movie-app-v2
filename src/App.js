@@ -7,17 +7,51 @@ import Body from "./comp/Body";
 import Footer from "./comp/Footer";
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+  
+
+  }
+  state = {
+    status: ""
+  }
+  async checkOnlineStatus(){
+    try {
+      const online = await fetch("https://jsonplaceholder.typicode.com/todos/1", {
+        cache: 'no-cache'
+      });
+      return online.status >= 200 && online.status < 300; // either true or false
+    } catch (err) {
+      return false; // definitely offline
+    }
+  };
+
+ 
+
   render() {
+    setInterval(async () => {
+      const result = await this.checkOnlineStatus();
+      let status = result ? "online" : "offline";
+   
+      if(this.state.status === status){
+        this.setState({
+          status
+        });
+      }
+           
+    }, 3000);
+
     return (
       <Fragment>
         <Navi />
         <Hero />
-        <Search />
-        <Body />
+        <Search status={this.state.status}/>
+        <Body status={this.state.status}/>
         <Footer />
       </Fragment>
     );
   }
 }
+
 
 export default App;
