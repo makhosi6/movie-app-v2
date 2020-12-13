@@ -33,7 +33,7 @@ class App extends Component {
       const result = await this.checkOnlineStatus();
       let status = result ? "online" : "offline";
    
-      if(this.state.status === status){
+      if(this.state.status !== status){
         this.setState({
           status
         });
@@ -42,6 +42,7 @@ class App extends Component {
     }, 3000);
 
     return (
+
       <Fragment>
         <Navi />
         <Hero />

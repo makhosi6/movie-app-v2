@@ -28,7 +28,7 @@ class Img extends Component {
 
     el.className += " play ";
     el.innerHTML = `<div class="gif" style = "width: 100%; height:100%;" ></div>`;
-    let m = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${name}+trailer&key=AIzaSyCr0OQHwLQi1ubxxiwHZMwg4Pds8fXohzo`;
+    let m = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${name}+trailer&key=${YT_API_KEY}`;
     const res = await fetch(m);
     const data = await res.json();
     const vidId = await data.items[0].id.videoId;
@@ -123,3 +123,5 @@ class Img extends Component {
 }
 
 export default Img;
+
+const YT_API_KEY = process.env.REACT_APP_TY_API_KEY;

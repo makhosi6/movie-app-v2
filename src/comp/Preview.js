@@ -62,12 +62,17 @@ class Preview extends Component {
   }
 
   render() {
-    setTimeout(() => {
-      this.setState({
-        status: this.props.status,
-      });
-    }, 4000);
-    console.log(this.state.status);
+    setInterval(async () => {
+     
+      if(this.state.status !== this.props.status){
+
+        this.setState({
+          status: this.props.status
+        });
+      }
+           
+    }, 3000);
+
     let truthy = this.props.info == "";
     let catchError = truthy === true ? <Loader status={this.state.status} /> : <Pass info={this.props.info} />;
     let element = truthy === true ? null : (

@@ -45,11 +45,14 @@ class Search extends Component {
   }
 
   render() {
-    setTimeout(() => {
-      this.setState({
-        status: this.props.status,
-      });
-    }, 4000);
+    setInterval(async () => {
+      if(this.state.status !== this.props.status){
+        this.setState({
+          status: this.props.status
+        });
+      }
+           
+    }, 3000);
     let cat = ``;
     let element =
       this.state.query.results === "" || this.state.queryvalue === "" ? null : (

@@ -10,12 +10,17 @@ class Loader extends Component {
    
   }
   render() {
-    setTimeout(() => {
-      this.setState({
-        status: this.props.status,
-      });
-    }, 4000);
-    console.log(this.state.status);
+    setInterval(async () => {
+     
+      if(this.state.status !== this.props.status){
+
+        this.setState({
+          status: this.props.status
+        });
+      }
+           
+    }, 3000);
+  
     return (
       <div className="gif" style={st}>
         {" "}
@@ -27,8 +32,7 @@ class Loader extends Component {
             fontSize: "18px",
           }}
         >
-          {this.state.status}...
-          {/* {this.state.status === "offline" ? "No Internet" : "Loading..."} */}
+          {this.state.status === "offline" ? "No Internet" : "Loading..."}
         </h1>
       </div>
     );

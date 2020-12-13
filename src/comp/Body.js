@@ -66,11 +66,15 @@ class Body extends Component {
   }
 
   render() {
-    setTimeout(() => {
-      this.setState({
-        status: this.props.status,
-      });
-    }, 4000);
+    setInterval(async () => {
+
+      if(this.state.status !== this.props.status){
+        this.setState({
+          status: this.props.status
+        });
+      }
+           
+    }, 3000);
 
     if (this.state.hasError) {
       return (

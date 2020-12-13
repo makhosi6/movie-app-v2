@@ -1,12 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import Popper from "@material-ui/core/Popper";
 import PopupState, { bindToggle, bindPopper } from "material-ui-popup-state";
-import Fade from "@material-ui/core/Fade";
-import Paper from "@material-ui/core/Paper";
 import LoginBttn from "./LoginBttn";
+import Logout from "./Logout";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +31,6 @@ export default function LoginPopup(prop) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [arrowRef, setArrowRef] = React.useState(null);
-
   const [arrow, setArrow] = React.useState(false); {/* true */}
 
   const handleClick = () => {
@@ -44,11 +40,11 @@ export default function LoginPopup(prop) {
   const handleClickAway = () => {
     setOpen(false);
   };
- 
+
   return (
     <div  >
       <Popper
-        {...bindPopper(prop.pps)}
+        {...bindPopper(prop.popupState)}
         placement="bottom"
         disablePortal={false}
         modifiers={{
@@ -67,7 +63,11 @@ export default function LoginPopup(prop) {
         transition
       >
          {arrow ? <span className={classes.arrow} ref={setArrowRef} /> : null}
-       <LoginBttn/>
+         {
+           ((prop.email) ===  undefined )?(
+         
+       <LoginBttn email={prop.email}/>):
+      ( <Logout email={prop.email}/>)}
       </Popper>
     </div>
   );
