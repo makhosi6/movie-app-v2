@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logo from "../img/horizontal-tablet.svg";
-import PopupState, { bindToggle, bindPopper } from "material-ui-popup-state";
+import PopupState, { bindToggle} from "material-ui-popup-state";
 import LoginPopup from "./Login";
 
 class Navi extends Component {
@@ -64,6 +64,7 @@ class Navi extends Component {
                 <div {...bindToggle(popupState)}>
                 <img
                   src={this.state.imgUrl}
+                  alt="avatar"
                   style={{
                     height: "50px",
                     borderRadius: "50%",

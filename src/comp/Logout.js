@@ -2,8 +2,8 @@ import { GoogleLogout } from "react-google-login";
 import React, { Component } from "react";
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-const logout = (res) => {
-  console.log(res);
+const logout = () => {
+  localStorage.clear()
 };
 export default class Logout extends Component {
   render() {

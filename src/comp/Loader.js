@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 
 class Loader extends Component {
-  constructor(props) {
-    super(props)
-  
-  }
-  
-  state = {
-   
-  }
+  state = {}
   render() {
     setInterval(async () => {
      

@@ -1,14 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Popper from "@material-ui/core/Popper";
-import PopupState, { bindToggle, bindPopper } from "material-ui-popup-state";
+import { bindPopper } from "material-ui-popup-state";
 import LoginBttn from "./LoginBttn";
 import Logout from "./Logout";
 
 
 const useStyles = makeStyles((theme) => ({
   arrow: {
-    
     position: 'absolute',
     fontSize: 7,
     width: '5em',
@@ -28,18 +27,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function LoginPopup(prop) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
   const [arrowRef, setArrowRef] = React.useState(null);
-  const [arrow, setArrow] = React.useState(false); {/* true */}
-
-  const handleClick = () => {
-    setOpen((prev) => !prev);
-  };
-
-  const handleClickAway = () => {
-    setOpen(false);
-  };
+  const [arrow ] = React.useState(false);
 
   return (
     <div  >

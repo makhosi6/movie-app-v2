@@ -7,14 +7,9 @@ import Body from "./comp/Body";
 import Footer from "./comp/Footer";
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-  
-
-  }
-  state = {
-    status: ""
-  }
+    state = {
+      status: ""
+    }
   async checkOnlineStatus(){
     try {
       const online = await fetch("https://jsonplaceholder.typicode.com/todos/1", {
