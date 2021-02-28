@@ -22,7 +22,7 @@ export default class LoginBttn extends Component {
           onFailure={responseGoogle}
         >
         {/* <FontAwesome name="google" /> */}
-          <span> Login with Google{`${this.props.email}`}</span>
+          <span> Login with Google</span>
         </GoogleLogin>
         
       </div>

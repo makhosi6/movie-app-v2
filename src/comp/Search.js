@@ -12,7 +12,7 @@ class Search extends Component {
     
     queryvalue: "",
     query: {
-      title: "Search results",
+      title: "Search results ",
       results: [],
     },
   };

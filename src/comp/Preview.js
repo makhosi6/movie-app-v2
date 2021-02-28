@@ -10,28 +10,32 @@ class Preview extends Component {
     this.more = this.more.bind(this);
   }
   state = {
-   
     hid: "",
     value: 0,
     vsblty: "hidden",
     left: 0,
     stop: 0,
   };
-  more(p) {
+   
+ async more(p) {
+   console.log(p);
     if (this.state.hid === "hidden") {
-      this.props.more(p);
-      console.log("its hidden now");
+      console.log("its hidden now, so we can etch more");
+      await this.props.more(p);
     }
   }
   slide() {
     let one =
       window.innerWidth - 20 >
       this.myInputt.current.getBoundingClientRect().left;
-    let p = 1;
+    let p = 2;
     if (one) {
-      console.clear();
-      console.log(++p);
-      this.more(++p);
+      // console.clear();
+      // console.log(p);
+      this.more(p).then(()=>{
+        p++
+        console.log('done fetching more, the page is ', p);
+      });
     }
     this.setState({
       stop: 0,

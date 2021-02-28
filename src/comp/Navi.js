@@ -58,7 +58,7 @@ class Navi extends Component {
               {this.state.email === undefined ? (
             
             <div className="login" {...bindToggle(popupState)}>
-            <i className="icon-user icon-u"> </i>
+            <i className="icon-arrow-down icon-u"> </i>
           </div>
               ) : (
                 <div {...bindToggle(popupState)}>
