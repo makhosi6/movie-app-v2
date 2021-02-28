@@ -47,7 +47,7 @@ class Navi extends Component {
         </div>
         <div className="listedMenu">
           <ul style={listedMenu}>
-            <li> Popular </li> <li> Most Watched </li> <li> Latest </li>
+            <li> Popular </li> <li> <a href="#most">Most Watched</a>  </li> <li> Latest </li>
           </ul>
         </div>
         <PopupState variant="popper" popupId="demo-popup-popper">

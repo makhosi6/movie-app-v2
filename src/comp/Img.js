@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import axios from "axios";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import { Link } from "@material-ui/core";
 
 class Img extends Component {
   constructor(props) {
@@ -35,6 +37,7 @@ class Img extends Component {
     el.innerHTML =
       '<iframe class="play" src="https://www.youtube.com/embed/'+vidId+'" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
   }
+
   handleClickAway(x,el) {
     if (x !== "") {
       el.className = "img";
