@@ -5,3 +5,5 @@
 
 
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+
+npx browserslist@latest --update-db

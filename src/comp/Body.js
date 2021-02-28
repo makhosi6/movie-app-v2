@@ -47,7 +47,7 @@ class Body extends Component {
 
   }
   async mostwatched(page) {
-    let p = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
+    let p = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=en-US&page=${page}`;
     const resp = await fetch(p);
     const data = await resp.json();
     this.setState({

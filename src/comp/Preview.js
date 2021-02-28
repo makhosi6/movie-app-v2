@@ -61,6 +61,7 @@ class Preview extends Component {
     });
   }
 
+
   render() {
     setInterval(async () => {
      
@@ -93,7 +94,8 @@ class Preview extends Component {
       );
     }
     return (
-      <section>
+      <section > 
+            
         {" "}
         {element}{" "}
         <span
