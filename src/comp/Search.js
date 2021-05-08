@@ -18,6 +18,7 @@ class Search extends Component {
   };
 
   async ifChange(page) {
+
     let m = `https:api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.queryvalue}&page=${page}`;
 
     const res = await fetch(m);
@@ -30,17 +31,20 @@ class Search extends Component {
     });
   }
   search() {
+    this.setState({
+      query: Object.assign({}, this.state.query, {
+        results: []
+      }),
+      
+    });
+
     if (document.querySelector(".input").value === "") {
       document.querySelector(".input").placeholder = "Please fill in!!!";
     } else {
       this.setState({
         queryvalue: document.querySelector(".input").value,
       });
-      setTimeout(() => {
-        if (document.querySelector(".input").value !== "") {
-          document.querySelector(".input").value = "";
-        }
-      }, 1000);
+     
     }
   }
 
@@ -53,7 +57,6 @@ class Search extends Component {
       }
            
     }, 3000);
-    let cat = ``;
     let element =
       this.state.query.results === "" || this.state.queryvalue === "" ? null : (
         <section style={style}>
@@ -71,7 +74,6 @@ class Search extends Component {
           </div>{" "}
           <Preview
             status={this.state.status}
-            cat={cat}
             more={this.ifChange}
             value={this.state.queryvalue}
             len={this.state.query.results.length || 0}
@@ -135,7 +137,7 @@ class Search extends Component {
                 fontSize: "18px",
               }}
               type="text"
-              placeholder="Type name, title"
+              placeholder={this.state.queryvalue||"Type name, title"}
             />
           </form>{" "}
         </div>{" "}

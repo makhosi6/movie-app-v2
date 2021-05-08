@@ -80,7 +80,7 @@ class Body extends Component {
       return (
         <div style={{ maxWidth: "300px", margin: "auto" }}>
           <h1>Something went wrong. </h1>
-          <p>Error: {this.state.hasError}</p>
+          {/* <p>Error: {this.state.hasError}</p> */}
         </div>
       );
     }
