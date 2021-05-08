@@ -20,7 +20,7 @@ class Preview extends Component {
  async more(p) {
    console.log(p);
     if (this.state.hid === "hidden") {
-      console.log("its hidden now, so we can etch more");
+      // console.log("its hidden now, so we can fetch more");
       await this.props.more(p);
     }
   }
@@ -34,7 +34,7 @@ class Preview extends Component {
       // console.log(p);
       this.more(p).then(()=>{
         p++
-        console.log('done fetching more, the page is ', p);
+        // console.log('done fetching more, the page is ', p);
       });
     }
     this.setState({
