@@ -17,7 +17,8 @@
     "react-scripts": "3.4.3",
     "react-sticky": "^6.0.3",
     "react-stickynode": "^3.0.3",
-    "react-z-index": "^3.0.0"
+    "react-z-index": "^3.0.0",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,6 +47,4 @@
     "gh-pages": "^3.1.0"
   },
   "description": "a go-to place to view and review premieres, latest and trending international movies and other TV programs"
-
-
 }

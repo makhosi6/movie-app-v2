@@ -5,6 +5,7 @@ import Hero from "./comp/Hero";
 import Search from "./comp/Search";
 import Body from "./comp/Body";
 import Footer from "./comp/Footer";
+import { v4 as rndm } from 'uuid';
 
 class App extends Component {
     state = {
@@ -12,7 +13,7 @@ class App extends Component {
     }
   async checkOnlineStatus(){
     try {
-      const online = await fetch("https://jsonplaceholder.typicode.com/todos/1", {
+      const online = await fetch(window.location.href+'/'+rndm(), {
         cache: 'no-cache'
       });
       return online.status >= 200 && online.status < 300; // either true or false
