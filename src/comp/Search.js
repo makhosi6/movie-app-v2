@@ -19,7 +19,7 @@ class Search extends Component {
 
   async ifChange(page) {
 
-    let m = `https:api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.queryvalue}&page=${page}`;
+    let m = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.queryvalue}&page=${page}`;
 
     const res = await fetch(m);
     const dt = await res.json();
