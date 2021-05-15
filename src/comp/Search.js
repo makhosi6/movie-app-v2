@@ -17,7 +17,7 @@ class Search extends Component {
     },
   };
 
-  async ifChange(page) {
+  async ifChange(page=1) {
 
     let m = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.queryvalue}&page=${page}`;
 
