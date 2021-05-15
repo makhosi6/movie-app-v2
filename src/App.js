@@ -13,7 +13,7 @@ class App extends Component {
     }
   async checkOnlineStatus(){
     try {
-      const online = await fetch(window.location.href+'/'+rndm(), {
+      const online = await fetch(window.location.href+rndm(), {
         cache: 'no-cache'
       });
       return online.status >= 200 && online.status < 300; // either true or false
